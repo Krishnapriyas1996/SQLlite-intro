@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="sTunes.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="3952"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="Sample View 1" custom_title="0" dock_id="1" table="4,13:mainSample View 1"/><dock_state state="000000ff00000000fd00000001000000020000000000000000fc0100000001fb000000160064006f0063006b00420072006f00770073006500310100000000ffffffff0000011700ffffff000000000000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="lab3.1*">--simple example on JOINs
+SELECT
+	*
+FROM
+	invoices
+INNER JOIN
+	customers
+ON
+	invoices.CustomerId = customers.CustomerId;</sql><sql name="lab 3.2*">SELECT
+	C.LastName,
+	C.FirstName,
+	I.InvoiceId,
+	I.InvoiceDate,
+	I.total
+FROM
+	invoices AS I
+INNER JOIN
+	customers AS C
+ON
+	I.CustomerId = C.CustomerId
+ORDER BY
+	C.LastName;</sql><sql name="lab 3.3*">--Joining more than 3 tables
+SELECT
+	E.FirstName,
+	E.LastName,
+	E.EmployeeId,
+	C.FirstName,
+	C.LastName,
+	C.SupportRepId,
+	I.total
+FROM
+	invoices AS I
+INNER JOIN
+	customers AS C
+ON
+	I.CustomerId = C.CustomerId
+INNER JOIN
+	employees AS E
+ON
+	C.SupportRepId = E.EmployeeId
+ORDER BY
+	I.total DESC
+LIMIT 10;
+</sql><sql name="lab 3.4*">--LEFT OUTER JOIN
+SELECT
+	AR.ArtistId AS [ArtistId FROM artists Table],
+	AL.ArtistId AS [ArtistId FROM albums Table],
+	AR.name AS [Artist name],
+	AL.Title AS [Albums]
+FROM
+	artists AS AR
+LEFT OUTER JOIN
+	albums AS AL
+ON
+	AR.ArtistId = AL.ArtistId
+WHERE
+	AL.ArtistId IS NULL;</sql><sql name="lab 3.5*">--RIGHT OUTER JOIN to LEFT OUTER JOIN
+SELECT
+	T.TrackId,
+	T.Composer,
+	T.name,
+	AL.AlbumId,
+	AL.Title
+FROM
+	albums AS AL
+RIGHT OUTER JOIN
+	tracks AS T
+ON
+	AL.AlbumId = T.AlbumId
+	</sql><current_tab id="4"/></tab_sql></sqlb_project>
